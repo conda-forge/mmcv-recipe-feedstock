@@ -66,6 +66,8 @@ outputs:
         - yapf
         - numpy
         - typing_extensions
+        - __cuda  # [cuda_compiler_version != "None"]
+
       run_constrained:
         - pytorch =*={{ proc_type }}*
     test:
