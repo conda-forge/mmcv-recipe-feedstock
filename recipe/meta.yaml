@@ -64,7 +64,7 @@ outputs:
         - Pillow
         - pyyaml
         - yapf
-        - {{ pin_compatible('numpy') }}
+        - numpy
         - typing_extensions
       run_constrained:
         - pytorch =*={{ proc_type }}*
