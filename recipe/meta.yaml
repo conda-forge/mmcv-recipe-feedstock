@@ -37,8 +37,9 @@ outputs:
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - python                                   # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}       # [build_platform != target_platform]
+        - pytorch ={{ pytorch }}={{ proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
