@@ -57,6 +57,8 @@ outputs:
         - pytorch ={{ pytorch }}={{ proc_type }}*
         - torchvision
         - setuptools
+        - numpy
+        - py-opencv
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - addict
@@ -64,7 +66,7 @@ outputs:
         - Pillow
         - pyyaml
         - yapf
-        - numpy
+        - {{ pin_compatible('numpy') }}
         - typing_extensions
         - __cuda  # [cuda_compiler_version != "None"]
 
