@@ -61,7 +61,8 @@ outputs:
         - numpy
         - py-opencv
       run:
-        # intentionally skipping opencv and pytorch (following upstream vendor)
+        - pytorch ={{ pytorch }}={{ proc_type }}*
+        - py-opencv
         - addict
         - packaging
         - Pillow
