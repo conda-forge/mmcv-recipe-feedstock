@@ -43,14 +43,14 @@ outputs:
         - numpy                                    # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        # this adds matching cuda requirement to run deps using __cuda package
+        # this adds matching cudatoolkit requirement to run
         - {{ compiler('cuda') }}    # [cuda_compiler_version != "None"]
         - ninja
-      host:
         - python
         - pip
         - requests
-        - future
+           host:
+   - future
         - six
         - typing
         - pkg-config  # [unix]
@@ -65,7 +65,7 @@ outputs:
         - py-opencv
         - addict
         - packaging
-        - Pillow
+        - pillow
         - pyyaml
         - yapf
         - {{ pin_compatible('numpy') }}
@@ -74,6 +74,7 @@ outputs:
 
       run_constrained:
         - pytorch =*={{ proc_type }}*
+
     test:
       requires:
         - pytest
