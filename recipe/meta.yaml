@@ -1,5 +1,5 @@
 {% set version = "1.5.3" %}
-{% set number = 0 %}
+{% set number = 1 %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
 {% set number = number + 200 %}
@@ -37,8 +37,10 @@ outputs:
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - python                                   # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}       # [build_platform != target_platform]
+        - pytorch ={{ pytorch }}={{ proc_type }}*  # [build_platform != target_platform]
+        - numpy                                    # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
@@ -56,6 +58,8 @@ outputs:
         - pytorch ={{ pytorch }}={{ proc_type }}*
         - torchvision
         - setuptools
+        - numpy
+        - py-opencv
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - addict
@@ -65,6 +69,8 @@ outputs:
         - yapf
         - {{ pin_compatible('numpy') }}
         - typing_extensions
+        - __cuda  # [cuda_compiler_version != "None"]
+
       run_constrained:
         - pytorch =*={{ proc_type }}*
     test:
