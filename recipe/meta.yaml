@@ -46,11 +46,11 @@ outputs:
         # this adds matching cudatoolkit requirement to run
         - {{ compiler('cuda') }}    # [cuda_compiler_version != "None"]
         - ninja
+      host:
         - python
         - pip
         - requests
-           host:
-   - future
+        - future
         - six
         - typing
         - pkg-config  # [unix]
