@@ -1,4 +1,4 @@
-{% set version = "1.5.3" %}
+{% set version = "1.6.1" %}
 {% set number = 1 %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 650929f52f1d0b2bae1bdaaa874e1e6dfdfa15f40bab5c366330488a9949ddd0
+  sha256: 784345bd82b6638b9e8a2c684bcddf74e2b9fd44f43ad21b3b573bd6ae5929bb
 build:
   number: {{ number }}
   skip: true  # [win]
@@ -20,20 +20,20 @@ outputs:
   - name: mmcv-full
     build:
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                      # [cuda_compiler_version == "None"]
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
       detect_binary_files_with_prefix: false
       run_exports:
         - {{ pin_subpackage('mmcv-full', max_pin='x.x') }}
       missing_dso_whitelist:
         # conda-forge::pytorch provides these libs
-        - "$RPATH/libc10_cuda.so"
-        - "$RPATH/libtorch_python.so"
-        - "$RPATH/libtorch_cpu.so"
-        - "$RPATH/libc10.so"
-        - "$RPATH/libc10_cuda.dylib"
-        - "$RPATH/libtorch_python.dylib"
-        - "$RPATH/libtorch_cpu.dylib"
-        - "$RPATH/libc10.dylib"
+        - $RPATH/libc10_cuda.so
+        - $RPATH/libtorch_python.so
+        - $RPATH/libtorch_cpu.so
+        - $RPATH/libc10.so
+        - $RPATH/libc10_cuda.dylib
+        - $RPATH/libtorch_python.dylib
+        - $RPATH/libtorch_cpu.dylib
+        - $RPATH/libc10.dylib
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
@@ -123,7 +123,7 @@ outputs:
 
 about:
   home: https://github.com/open-mmlab/mmcv
-  summary: 'Foundational library for computer vision research'
+  summary: Foundational library for computer vision research
   description: |
     MMCV is a foundational library for computer vision research and supports many research projects.
   license: Apache-2.0
