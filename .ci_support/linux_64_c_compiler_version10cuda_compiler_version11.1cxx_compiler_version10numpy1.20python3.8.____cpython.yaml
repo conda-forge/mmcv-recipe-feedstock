@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '9'
+- '10'
 cdt_name:
 - cos7
 channel_sources:
@@ -11,22 +11,20 @@ channel_targets:
 cuda_compiler:
 - nvcc
 cuda_compiler_version:
-- '11.0'
+- '11.1'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '9'
+- '10'
 docker_image:
-- quay.io/condaforge/linux-anvil-cuda:11.0
+- quay.io/condaforge/linux-anvil-cuda:11.1
 libiconv:
-- '1.16'
+- '1'
 libopencv:
-- 4.5.5
+- 4.6.0
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
-  libiconv:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x

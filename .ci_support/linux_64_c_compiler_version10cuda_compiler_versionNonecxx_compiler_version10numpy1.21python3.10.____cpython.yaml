@@ -19,14 +19,12 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 libiconv:
-- '1.16'
+- '1'
 libopencv:
-- 4.5.5
+- 4.6.0
 numpy:
 - '1.21'
 pin_run_as_build:
-  libiconv:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
