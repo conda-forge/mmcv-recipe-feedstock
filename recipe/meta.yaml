@@ -1,4 +1,4 @@
-{% set version = "1.6.1" %}
+{% set version = "1.7.0" %}
 {% set number = 1 %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 784345bd82b6638b9e8a2c684bcddf74e2b9fd44f43ad21b3b573bd6ae5929bb
+  sha256: 1665c6a9c7ffd19c0786451e38fd6385784f65113812a7dacb8e34f783184922
 build:
   number: {{ number }}
   skip: true  # [win]
