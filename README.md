@@ -308,4 +308,5 @@ Feedstock Maintainers
 =====================
 
 * [@apatsekin](https://github.com/apatsekin/)
+* [@weiji14](https://github.com/weiji14/)
 
