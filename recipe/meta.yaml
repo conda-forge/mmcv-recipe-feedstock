@@ -70,9 +70,9 @@ outputs:
         - {{ pin_compatible('numpy') }}
         - typing_extensions
         - __cuda  # [cuda_compiler_version != "None"]
-
       run_constrained:
-        - pytorch =*={{ proc_type }}*
+        - pytorch =*{{ proc_type }}*
+
     test:
       requires:
         - pytest
