@@ -55,6 +55,7 @@ outputs:
         - typing
         - pkg-config  # [unix]
         - typing_extensions
+        - pytorch
         - pytorch ={{ pytorch }}={{ proc_type }}*
         - torchvision
         - setuptools
