@@ -1,6 +1,7 @@
 {% set version = "1.7.0" %}
 {% set number = 1 %}
-{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
+# see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
+{% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
 {% set number = number + 200 %}
 {% endif %}
@@ -39,7 +40,8 @@ outputs:
       build:
         - python                                   # [build_platform != target_platform]
         - cross-python_{{ target_platform }}       # [build_platform != target_platform]
-        - pytorch ={{ pytorch }}={{ proc_type }}*  # [build_platform != target_platform]
+        - pytorch                                  # [build_platform != target_platform]
+        - pytorch =*={{ torch_proc_type }}*        # [build_platform != target_platform]
         - numpy                                    # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
@@ -56,7 +58,7 @@ outputs:
         - pkg-config  # [unix]
         - typing_extensions
         - pytorch
-        - pytorch ={{ pytorch }}={{ proc_type }}*
+        - pytorch =*={{ torch_proc_type }}*
         - torchvision
         - setuptools
         - numpy
@@ -72,7 +74,7 @@ outputs:
         - typing_extensions
         - __cuda  # [cuda_compiler_version != "None"]
       run_constrained:
-        - pytorch =*{{ proc_type }}*
+        - pytorch =*={{ torch_proc_type }}*
 
     test:
       requires:
