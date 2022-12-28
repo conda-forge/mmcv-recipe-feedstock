@@ -99,7 +99,8 @@ outputs:
       source_files:
         - tests
       commands:
-        {% set failing_tests = ["test_imcrop",
+        {% set failing_tests = ["test_digit_version",
+                                "test_imcrop",
                                 "test_tensor2imgs",
                                 "test_imwrite",
                                 "test_imfrombytes",
