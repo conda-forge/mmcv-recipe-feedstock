@@ -141,3 +141,4 @@ extra:
   recipe-maintainers:
     - weiji14
     - apatsekin
+  feedstock-name: mmcv
