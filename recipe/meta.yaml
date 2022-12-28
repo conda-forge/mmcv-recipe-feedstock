@@ -77,6 +77,8 @@ outputs:
         - typing_extensions
         - yapf
       run_constrained:
+        # additional run constraint to the one from the (version-only) run_export;
+        # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
         - pytorch =*=*{{ torch_proc_type }}*
 
     test:
