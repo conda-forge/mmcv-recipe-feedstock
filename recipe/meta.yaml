@@ -1,4 +1,4 @@
-{% set version = "1.7.1" %}
+{% set version = "2.0.0" %}
 {% set number = 2 %}
 # see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8a2a16ee99b436d9506fe393d09ab17f0209ba8d27d785f3c94c4c3f97e97123
+  sha256: 826344c72f0d2c17b0499acd712b06459223de319365c23702dcd6d0e309b81d
 build:
   number: {{ number }}
   skip: true  # [win]
