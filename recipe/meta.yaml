@@ -70,6 +70,7 @@ outputs:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - __cuda  # [cuda_compiler_version != "None"]
         - addict
+        - mmengine>=0.2.0
         - {{ pin_compatible('numpy') }}
         - packaging
         - Pillow
