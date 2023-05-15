@@ -27,6 +27,7 @@ outputs:
       build:
         - ninja
         - psutil
+        - python                                         # [build_platform != target_platform]
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
