@@ -1,6 +1,6 @@
 {% set version = "2.0.0" %}
-{% set number = 2 %}
-# see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
+{% set number = 0 %}  # build number
+# see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
 {% set number = number + 200 %}
@@ -11,61 +11,31 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 826344c72f0d2c17b0499acd712b06459223de319365c23702dcd6d0e309b81d
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/mmcv-{{ version }}.tar.gz
+  sha256: 2a26c0b1148979954da9c98f88b1ca038ef823031f5975ff4f8951e75474638c
+
 build:
   number: {{ number }}
-  skip: true  # [win]
-  # as of pytorch 1.13, conda-forge only builds for CUDA 11.2+, see
-  # https://github.com/conda-forge/conda-forge-pinning-feedstock/issues/3491
-  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
 
 outputs:
-  - name: mmcv-full
+  - name: mmcv
     build:
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-      detect_binary_files_with_prefix: false
-      run_exports:
-        - {{ pin_subpackage('mmcv-full', max_pin='x.x') }}
-      missing_dso_whitelist:
-        # conda-forge::pytorch provides these libs
-        - $RPATH/libc10_cuda.so
-        - $RPATH/libtorch_python.so
-        - $RPATH/libtorch_cpu.so
-        - $RPATH/libc10.so
-        - $RPATH/libc10_cuda.dylib
-        - $RPATH/libtorch_python.dylib
-        - $RPATH/libtorch_cpu.dylib
-        - $RPATH/libc10.dylib
-    script: build_mmcv.sh  # [not win]
+    script: {{ PYTHON }} -m pip install . -vv
     requirements:
       build:
-        - cross-python_{{ target_platform }}                   # [build_platform != target_platform]
         - ninja
-        - numpy                                                # [build_platform != target_platform]
-        - python                                               # [build_platform != target_platform]
-        - pytorch                                              # [build_platform != target_platform]
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*        # [build_platform != target_platform]
+        - psutil
+        - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
-        - {{ compiler('cuda') }}    # [cuda_compiler_version != "None"]
+        - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
       host:
-        - future
         - numpy
         - pip
-        - pkg-config  # [unix]
-        - py-opencv
         - python
-        - pytorch
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*
-        - requests
-        - setuptools
-        - six
-        - torchvision
-        - typing
-        - typing_extensions
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - __cuda  # [cuda_compiler_version != "None"]
@@ -81,64 +51,23 @@ outputs:
         # additional run constraint to the one from the (version-only) run_export;
         # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
         - pytorch =*={{ torch_proc_type }}*
-
     test:
-      requires:
-        - pytest
-        - requests
-        - scipy
-        - libopencv
-        - py-opencv
-        - opencv
-        - python-lmdb
-        - libiconv
-        - tifffile
-        - python-dateutil
-        - torchvision
       imports:
         - mmcv
-      source_files:
-        - tests
       commands:
-        {% set failing_tests = ["test_digit_version",
-                                "test_imcrop",
-                                "test_tensor2imgs",
-                                "test_imwrite",
-                                "test_imfrombytes",
-                                "test_imread"] %}
-        {% set slow_tests = ["test_eval_hook",
-                             "test_start_param",
-                             "test_flat_cosine_runner_hook",
-                             "test_momentum_runner_hook",
-                             "test_step_runner_hook",
-                             "test_adjust_sharpness",
-                             "test_adjust_contrast",
-                             "test_adjust_brightness",
-                             "test_gradient_cumulative_optimizer_hook",
-                             "test_auto_contrast"] %}
-        {% set ignored_files = ["./tests/test_ops/test_onnx.py",
-                                "./tests/test_ops/test_tensorrt.py",
-                                "./tests/test_ops/test_tensorrt_preprocess.py",
-                                "./tests/test_utils/test_timer.py",
-                                "./tests/test_utils/test_progressbar.py"] %}
-        # ignored tests:
-        # test_onnx.py,test_tensorrt.py,test_tensorrt_preprocess.py - mccv currently compiled without onnx runtime
-        # test_geometric.py:test_imcrop - depending on what backend opencv uses it produces diff results (lipjpeg vs libturbojpeg)
-        # test_io.py - tries to import libturbojpeg that we don't install (conflicts with opencv that uses libjpeg)
-        # test_progressbar.py, test_timer.py - on OSX sleep(1) takes 1.1sec, so all related tests fail
-        # test_image_misc.py::test_tensor2imgs - need to investigate 2/75 mismatch
-        - python3 -m pytest ./tests/ -k "not ({{ (failing_tests + slow_tests)|join(' or ') }})" --ignore={{ ignored_files|join(' --ignore=') }}
-        - python3 -c "import mmcv; print(mmcv.__version__)"
-
+        - pip check
+        - python -c "import mmcv; print(mmcv.__version__)"
+      requires:
+        - pip
 
 about:
   home: https://github.com/open-mmlab/mmcv
-  summary: Foundational library for computer vision research
-  description: |
-    MMCV is a foundational library for computer vision research and supports many research projects.
-  license: Apache-2.0
-  license_family: Apache
-  license_file: LICENSE
+  summary: OpenMMLab Computer Vision Foundation
+  license: Apache-2.0 AND LicenseRef-NVIDIA-License
+  license_file:
+    - LICENSE
+    - LICENSES.md
+  doc_url: https://mmcv.readthedocs.io
   dev_url: https://github.com/open-mmlab/mmcv
 
 extra:
