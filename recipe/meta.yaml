@@ -33,6 +33,7 @@ outputs:
         - numpy                                          # [build_platform != target_platform]
         - psutil
         - python                                         # [build_platform != target_platform]
+        - pytorch                                        # [build_platform != target_platform]
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
