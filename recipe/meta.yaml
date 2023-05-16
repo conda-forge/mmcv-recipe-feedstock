@@ -70,7 +70,7 @@ outputs:
         - tests
       commands:
         - pip check
-        - python .dev_scripts/check_installation.py
+        - python ./.dev_scripts/check_installation.py
         - python -m pytest ./tests/
         - python -c "import mmcv; print(mmcv.__version__)"
 
