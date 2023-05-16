@@ -11,21 +11,25 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/m/mmcv/mmcv-{{ version }}.tar.gz
-  sha256: 2a26c0b1148979954da9c98f88b1ca038ef823031f5975ff4f8951e75474638c
+  url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 826344c72f0d2c17b0499acd712b06459223de319365c23702dcd6d0e309b81d
 
 build:
   number: {{ number }}
+  skip: true  # [win]
+  # as of pytorch 1.13, conda-forge only builds for CUDA 11.2+, see
+  # https://github.com/conda-forge/conda-forge-pinning-feedstock/issues/3491
+  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
 
 outputs:
   - name: mmcv
     build:
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-    script: build_mmcv.bat  # [win]
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - ninja
         - psutil
         - python                                         # [build_platform != target_platform]
@@ -38,6 +42,8 @@ outputs:
         - numpy
         - pip
         - python
+        - pytorch
+        - pytorch ={{ pytorch }}={{ torch_proc_type }}*
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - __cuda  # [cuda_compiler_version != "None"]
@@ -54,13 +60,19 @@ outputs:
         # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
         - pytorch =*={{ torch_proc_type }}*
     test:
-      imports:
-        - mmcv
-      commands:
-        - pip check
-        - python -c "import mmcv; print(mmcv.__version__)"
       requires:
         - pip
+        - pytest
+        - py-opencv
+      imports:
+        - mmcv
+      source_files:
+        - tests
+      commands:
+        - pip check
+        - python .dev_scripts/check_installation.py
+        - python -m pytest ./tests/
+        - python -c "import mmcv; print(mmcv.__version__)"
 
 about:
   home: https://github.com/open-mmlab/mmcv
