@@ -22,7 +22,8 @@ outputs:
     build:
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-    script: {{ PYTHON }} -m pip install . -vv
+    script: build_mmcv.bat  # [win]
+    script: build_mmcv.sh  # [not win]
     requirements:
       build:
         - ninja
