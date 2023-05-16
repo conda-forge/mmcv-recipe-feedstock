@@ -13,7 +13,6 @@ package:
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 826344c72f0d2c17b0499acd712b06459223de319365c23702dcd6d0e309b81d
-
 build:
   number: {{ number }}
   skip: true  # [win]
@@ -29,7 +28,7 @@ outputs:
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}             # [build_platform != target_platform]
         - ninja
         - psutil
         - python                                         # [build_platform != target_platform]
@@ -37,7 +36,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
-        - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
+        - {{ compiler('cuda') }}                         # [cuda_compiler_version != "None"]
       host:
         - numpy
         - pip
@@ -67,6 +66,7 @@ outputs:
       imports:
         - mmcv
       source_files:
+        - .dev_scripts/check_installation.py
         - tests
       commands:
         - pip check
