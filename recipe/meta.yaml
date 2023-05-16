@@ -30,6 +30,7 @@ outputs:
       build:
         - cross-python_{{ target_platform }}             # [build_platform != target_platform]
         - ninja
+        - numpy                                          # [build_platform != target_platform]
         - psutil
         - python                                         # [build_platform != target_platform]
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
