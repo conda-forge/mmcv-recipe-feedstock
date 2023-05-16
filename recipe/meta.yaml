@@ -60,9 +60,12 @@ outputs:
         - pytorch =*={{ torch_proc_type }}*
     test:
       requires:
+        - onnx
         - pip
         - pytest
+        - pyturbojpeg
         - py-opencv
+        - torchvision
       imports:
         - mmcv
       source_files:
