@@ -1,18 +1,17 @@
-About mmcv
-==========
-
-Home: https://github.com/open-mmlab/mmcv
-
-Package license: Apache-2.0
+About mmcv-feedstock
+====================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mmcv-recipe-feedstock/blob/main/LICENSE.txt)
 
-Summary: Foundational library for computer vision research
+Home: https://github.com/open-mmlab/mmcv
+
+Package license: Apache-2.0 AND LicenseRef-NVIDIA-License
+
+Summary: OpenMMLab Computer Vision Foundation
 
 Development: https://github.com/open-mmlab/mmcv
 
-MMCV is a foundational library for computer vision research and supports many research projects.
-
+Documentation: https://mmcv.readthedocs.io
 
 Current build status
 ====================
@@ -32,87 +31,87 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.20python3.8.____cpython</td>
+              <td>linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.20python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.20python3.9.____cpython</td>
+              <td>linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.20python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.21python3.10.____cpython</td>
+              <td>linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10numpy1.21python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.20python3.8.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.20python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.20python3.9.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.20python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.21python3.10.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11numpy1.21python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.20python3.8.____cpython</td>
+              <td>osx_64_python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.20python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.20python3.9.____cpython</td>
+              <td>osx_64_python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.20python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.21python3.10.____cpython</td>
+              <td>osx_64_python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.21python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_numpy1.20python3.8.____cpython</td>
+              <td>osx_arm64_python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.20python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_numpy1.20python3.9.____cpython</td>
+              <td>osx_arm64_python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.20python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_numpy1.21python3.10.____cpython</td>
+              <td>osx_arm64_python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16625&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.21python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mmcv-recipe-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
@@ -128,7 +127,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-mmcv--full-green.svg)](https://anaconda.org/conda-forge/mmcv-full) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mmcv-full.svg)](https://anaconda.org/conda-forge/mmcv-full) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mmcv-full.svg)](https://anaconda.org/conda-forge/mmcv-full) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mmcv-full.svg)](https://anaconda.org/conda-forge/mmcv-full) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-mmcv-green.svg)](https://anaconda.org/conda-forge/mmcv) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mmcv.svg)](https://anaconda.org/conda-forge/mmcv) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mmcv.svg)](https://anaconda.org/conda-forge/mmcv) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mmcv.svg)](https://anaconda.org/conda-forge/mmcv) |
 
 Installing mmcv
 ===============
@@ -140,41 +139,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `mmcv-full` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `mmcv` can be installed with `conda`:
 
 ```
-conda install mmcv-full
-```
-
-or with `mamba`:
-
-```
-mamba install mmcv-full
-```
-
-It is possible to list all of the versions of `mmcv-full` available on your platform with `conda`:
-
-```
-conda search mmcv-full --channel conda-forge
+conda install mmcv
 ```
 
 or with `mamba`:
 
 ```
-mamba search mmcv-full --channel conda-forge
+mamba install mmcv
+```
+
+It is possible to list all of the versions of `mmcv` available on your platform with `conda`:
+
+```
+conda search mmcv --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search mmcv --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search mmcv-full --channel conda-forge
+mamba repoquery search mmcv --channel conda-forge
 
-# List packages depending on `mmcv-full`:
-mamba repoquery whoneeds mmcv-full --channel conda-forge
+# List packages depending on `mmcv`:
+mamba repoquery whoneeds mmcv --channel conda-forge
 
-# List dependencies of `mmcv-full`:
-mamba repoquery depends mmcv-full --channel conda-forge
+# List dependencies of `mmcv`:
+mamba repoquery depends mmcv --channel conda-forge
 ```
 
 

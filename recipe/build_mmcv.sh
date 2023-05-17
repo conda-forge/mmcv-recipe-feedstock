@@ -1,9 +1,7 @@
 #!/bin/bash
-
 set -ex
 
 export PATH="$PWD:$PATH"
-
 
 export CC=$(basename $CC)
 export CXX=$(basename $CXX)
@@ -27,17 +25,8 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export CUDA_PATH=$CUDA_HOME
     export PATH="$CUDA_HOME/bin:$PATH"
     export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-    if [[ ${cuda_compiler_version} == 9.0* ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;7.0+PTX"
-    elif [[ ${cuda_compiler_version} == 9.2* ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0+PTX"
-    elif [[ ${cuda_compiler_version} == 10.* ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5+PTX"
-    elif [[ ${cuda_compiler_version} == 11.0* ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0+PTX"
-    elif [[ ${cuda_compiler_version} == 11.1 ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX"
-    elif [[ ${cuda_compiler_version} == 11.2 ]]; then
+    # https://github.com/conda-forge/conda-forge.github.io/issues/1901
+    if [[ ${cuda_compiler_version} == 11.2 ]]; then
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX"
     else
         echo "unsupported cuda version. edit build_mmcv.sh"
