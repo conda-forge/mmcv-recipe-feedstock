@@ -1,4 +1,4 @@
-{% set version = "2.0.0" %}
+{% set version = "2.0.1" %}
 {% set number = 0 %}  # build number
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 826344c72f0d2c17b0499acd712b06459223de319365c23702dcd6d0e309b81d
+  sha256: a14ebebc8033fb2ff4c303ec2ce4b8b90345a1471bd93f155cb58a401f63dbc9
 build:
   number: {{ number }}
   skip: true  # [win]
@@ -49,7 +49,7 @@ outputs:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - __cuda  # [cuda_compiler_version != "None"]
         - addict
-        - mmengine>=0.2.0
+        - mmengine>=0.3.0
         - {{ pin_compatible('numpy') }}
         - packaging
         - Pillow
