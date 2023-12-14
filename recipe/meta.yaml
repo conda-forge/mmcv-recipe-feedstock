@@ -1,9 +1,15 @@
 {% set version = "2.1.0" %}
-{% set number = 2 %}  # build number
+{% set number = 3 %}  # build number
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% if cuda_compiler_version != "None" %}
 {% set number = number + 200 %}
+{% endif %}
+
+{% if cuda_compiler_version in (None, "None", True, False) %}
+{% set cuda_major = 0 %}
+{% else %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0] | int %}
 {% endif %}
 
 package:
@@ -36,12 +42,22 @@ outputs:
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
         - {{ compiler('cuda') }}                         # [cuda_compiler_version != "None"]
+        {% if cuda_major >= 12 %}
+        - libcublas-dev                                  # [build_platform != target_platform]
+        - libcusolver-dev                                # [build_platform != target_platform]
+        - libcusparse-dev                                # [build_platform != target_platform]
+        {% endif %}
       host:
         - numpy
         - pip
         - python
         - pytorch
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*
+        {% if cuda_major >= 12 %}
+        - libcublas-dev
+        - libcusolver-dev
+        - libcusparse-dev
+        {% endif %}
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
         - __cuda  # [cuda_compiler_version != "None"]
