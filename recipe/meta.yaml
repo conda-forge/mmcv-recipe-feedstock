@@ -81,7 +81,7 @@ outputs:
         - pyturbojpeg
         - py-opencv
         - tifffile
-        - torchvision
+        - torchvision >=0.16.0
       imports:
         - mmcv
       source_files:
