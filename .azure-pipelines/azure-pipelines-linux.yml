@@ -109,6 +109,7 @@ jobs:
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
         SHORT_CONFIG: linux_64_c_compiler_version12cuda_c_h6bb9447690
   timeoutInMinutes: 360
+  variables: {}
 
   steps:
   - script: |
