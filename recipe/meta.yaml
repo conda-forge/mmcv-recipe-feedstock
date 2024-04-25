@@ -1,4 +1,4 @@
-{% set version = "2.1.0" %}
+{% set version = "2.2.0" %}
 {% set number = 3 %}  # build number
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -18,7 +18,7 @@ package:
 
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 4e9d28b42179404aff9ce4749e2cc5a3ad45fe76e3a0621608bcc8e144e917a1
+  sha256: 13b2bdab6e97799177dee568efdb2ae0bb48b1dc924a8b617416ee8a392e5348
 build:
   number: {{ number }}
   skip: true  # [win]
@@ -39,6 +39,7 @@ outputs:
         - pytorch                                        # [build_platform != target_platform]
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
         - {{ compiler('cuda') }}                         # [cuda_compiler_version != "None"]
