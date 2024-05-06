@@ -37,7 +37,7 @@ outputs:
         - psutil
         - python                                         # [build_platform != target_platform]
         - pytorch                                        # [build_platform != target_platform]
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
+        - pytorch ={{ pytorch }}=*{{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
@@ -52,7 +52,7 @@ outputs:
         - pip
         - python
         - pytorch
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*
+        - pytorch ={{ pytorch }}=*{{ torch_proc_type }}*
         {% if cuda_major >= 12 %}
         - libcublas-dev
         - libcusolver-dev
@@ -72,7 +72,7 @@ outputs:
       run_constrained:
         # additional run constraint to the one from the (version-only) run_export;
         # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
-        - pytorch =*={{ torch_proc_type }}*
+        - pytorch =*=*{{ torch_proc_type }}*
     test:
       requires:
         - onnx
