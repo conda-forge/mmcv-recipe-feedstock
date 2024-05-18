@@ -39,6 +39,7 @@ outputs:
         - pytorch                                        # [build_platform != target_platform]
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         # this adds matching cuda requirement to run deps using __cuda package
         - {{ compiler('cuda') }}                         # [cuda_compiler_version != "None"]
