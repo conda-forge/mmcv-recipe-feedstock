@@ -89,7 +89,7 @@ outputs:
         - .dev_scripts/check_installation.py
         - tests
       commands:
-        - pip check
+        # - pip check  # disabled because mmengine on conda-forge is mmengine-lite
         - python ./.dev_scripts/check_installation.py
         - python -m pytest ./tests/
         - python -c "import mmcv; print(mmcv.__version__)"
