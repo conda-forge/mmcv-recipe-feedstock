@@ -1,7 +1,9 @@
 {% set version = "2.2.0" %}
-{% set number = 0 %}  # build number
+{% set number = 1 %}  # build number
+
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
+
 {% if cuda_compiler_version != "None" %}
 {% set number = number + 200 %}
 {% endif %}
@@ -9,7 +11,7 @@
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
 {% else %}
-{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0] | int %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
 {% endif %}
 
 package:
