@@ -22,9 +22,7 @@ export MMCV_WITH_OPS=1
 if [[ ${cuda_compiler_version} != "None" ]]; then
     export FORCE_CUDA="1"
     # https://github.com/conda-forge/conda-forge.github.io/issues/1901
-    if [[ ${cuda_compiler_version} == 11.2 ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX"
-    elif [[ ${cuda_compiler_version} == 11.8 ]]; then
+    if [[ ${cuda_compiler_version} == 11.8 ]]; then
       export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX"
       export CUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME
     elif [[ ${cuda_compiler_version} == 12.0 ]]; then
