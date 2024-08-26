@@ -1,11 +1,11 @@
 {% set version = "2.2.0" %}
-{% set number = 1 %}  # build number
+{% set build = 2 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 {% if cuda_compiler_version != "None" %}
-{% set number = number + 200 %}
+{% set build = build + 200 %}
 {% endif %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -22,7 +22,7 @@ source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 13b2bdab6e97799177dee568efdb2ae0bb48b1dc924a8b617416ee8a392e5348
 build:
-  number: {{ number }}
+  number: {{ build }}
   skip: true  # [win]
 
 outputs:
