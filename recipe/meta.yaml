@@ -56,6 +56,7 @@ outputs:
         - python
         - pytorch
         - pytorch ={{ pytorch }}={{ torch_proc_type }}*
+        - setuptools
         {% if cuda_major >= 12 %}
         - libcublas-dev
         - libcusolver-dev
