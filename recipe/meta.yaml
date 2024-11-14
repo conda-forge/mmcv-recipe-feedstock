@@ -1,5 +1,5 @@
 {% set version = "2.2.0" %}
-{% set build = 2 %}
+{% set build = 3 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -39,7 +39,7 @@ outputs:
         - psutil
         - python                                         # [build_platform != target_platform]
         - pytorch                                        # [build_platform != target_platform]
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
+        - pytorch =*={{ torch_proc_type }}*              # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
@@ -55,7 +55,7 @@ outputs:
         - pip
         - python
         - pytorch
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*
+        - pytorch =*={{ torch_proc_type }}*
         - setuptools
         {% if cuda_major >= 12 %}
         - libcublas-dev
