@@ -39,7 +39,7 @@ outputs:
         - psutil
         - python                                         # [build_platform != target_platform]
         - pytorch                                        # [build_platform != target_platform]
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*  # [build_platform != target_platform]
+        - pytorch =*={{ torch_proc_type }}*              # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
@@ -55,7 +55,7 @@ outputs:
         - pip
         - python
         - pytorch
-        - pytorch ={{ pytorch }}={{ torch_proc_type }}*
+        - pytorch =*={{ torch_proc_type }}*
         - setuptools
         {% if cuda_major >= 12 %}
         - libcublas-dev
