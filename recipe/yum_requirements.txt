@@ -2,4 +2,3 @@ mesa-libGL
 mesa-libEGL
 libglvnd-egl
 libglvnd-glx
-libglvnd-opengl
