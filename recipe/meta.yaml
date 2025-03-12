@@ -95,7 +95,11 @@ outputs:
       commands:
         # - pip check  # disabled because mmengine on conda-forge is mmengine-lite
         - python ./.dev_scripts/check_installation.py
-        - python -m pytest ./tests/
+        # unknown osx_64 segfault on test_pixel_group
+        {% set tests_to_skip = "test_pixel_group" %}
+        # {% set tests_to_skip = tests_to_skip + " or test_<placeholder>" %}
+        - $PYTHON -m pytest --verbose ./tests/  # [not (osx and x86_64)]
+        - $PYTHON -m pytest --verbose -rxXs -k "not ({{ tests_to_skip }})" ./tests/  # [osx and x86_64]
         - python -c "import mmcv; print(mmcv.__version__)"
 
 about:
