@@ -1,5 +1,5 @@
 {% set version = "2.2.0" %}
-{% set build = 4 %}
+{% set build = 5 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -59,6 +59,8 @@ outputs:
         - pytorch
         - pytorch =*={{ torch_proc_type }}*
         - setuptools
+        # Ensure cuda version matches build https://github.com/conda-forge/mmcv-recipe-feedstock/issues/40
+        - cuda-version={{ cuda_compiler_version }}       # [cuda_compiler_version != "None"]
         {% if cuda_major >= 12 %}
         - libcublas-dev
         - libcusolver-dev
@@ -66,9 +68,9 @@ outputs:
         {% endif %}
       run:
         # intentionally skipping opencv and pytorch (following upstream vendor)
-        - __cuda  # [cuda_compiler_version != "None"]
+        - {{ pin_compatible('cuda-version', max_pin='x', min_pin='x') }}  # [cuda_compiler_version != "None"]
         - addict
-        - mmengine>=0.3.0
+        - mmengine >=0.3.0
         - packaging
         - Pillow
         - pyyaml
