@@ -116,6 +116,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - weiji14
     - apatsekin
+    - das-intensity
+    - weiji14
   feedstock-name: mmcv
