@@ -272,5 +272,6 @@ Feedstock Maintainers
 =====================
 
 * [@apatsekin](https://github.com/apatsekin/)
+* [@das-intensity](https://github.com/das-intensity/)
 * [@weiji14](https://github.com/weiji14/)
 

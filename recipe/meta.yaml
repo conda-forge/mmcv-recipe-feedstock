@@ -1,5 +1,5 @@
 {% set version = "2.2.0" %}
-{% set build = 5 %}
+{% set build = 6 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -41,7 +41,7 @@ outputs:
         - psutil
         - python                                         # [build_platform != target_platform]
         - pytorch                                        # [build_platform != target_platform]
-        - pytorch =*={{ torch_proc_type }}*              # [build_platform != target_platform]
+        - pytorch * {{ torch_proc_type }}*               # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
@@ -57,7 +57,7 @@ outputs:
         - pip
         - python
         - pytorch
-        - pytorch =*={{ torch_proc_type }}*
+        - pytorch * {{ torch_proc_type }}*
         - setuptools
         # Ensure cuda version matches build https://github.com/conda-forge/mmcv-recipe-feedstock/issues/40
         - cuda-version={{ cuda_compiler_version }}       # [cuda_compiler_version != "None"]
@@ -79,7 +79,7 @@ outputs:
       run_constrained:
         # additional run constraint to the one from the (version-only) run_export;
         # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
-        - pytorch =*={{ torch_proc_type }}*
+        - pytorch * {{ torch_proc_type }}*
     test:
       requires:
         - onnx
@@ -116,6 +116,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - weiji14
     - apatsekin
+    - das-intensity
+    - weiji14
   feedstock-name: mmcv
