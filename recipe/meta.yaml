@@ -1,5 +1,5 @@
 {% set version = "2.2.0" %}
-{% set build = 6 %}
+{% set build = 7 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -24,8 +24,6 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
-  # pytorch in conda-forge does not support CUDA 11.8 as of v2.5
-  skip: true  # [cuda_compiler_version == "11.8"]
 
 outputs:
   - name: mmcv
