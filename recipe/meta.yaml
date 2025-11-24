@@ -8,12 +8,6 @@
 {% set build = build + 200 %}
 {% endif %}
 
-{% if cuda_compiler_version in (None, "None", True, False) %}
-{% set cuda_major = 0 %}
-{% else %}
-{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
-{% endif %}
-
 package:
   name: mmcv-recipe
   version: {{ version }}
@@ -43,9 +37,9 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
+        {% if cuda_compiler_version != "None" %}
         # this adds matching cuda requirement to run deps using __cuda package
-        - {{ compiler('cuda') }}                         # [cuda_compiler_version != "None"]
-        {% if cuda_major >= 12 %}
+        - {{ compiler('cuda') }}
         - libcublas-dev                                  # [build_platform != target_platform]
         - libcusolver-dev                                # [build_platform != target_platform]
         - libcusparse-dev                                # [build_platform != target_platform]
@@ -57,9 +51,9 @@ outputs:
         - pytorch
         - pytorch * {{ torch_proc_type }}*
         - setuptools
+        {% if cuda_compiler_version != "None" %}
         # Ensure cuda version matches build https://github.com/conda-forge/mmcv-recipe-feedstock/issues/40
-        - cuda-version={{ cuda_compiler_version }}       # [cuda_compiler_version != "None"]
-        {% if cuda_major >= 12 %}
+        - cuda-version {{ cuda_compiler_version }}
         - libcublas-dev
         - libcusolver-dev
         - libcusparse-dev
