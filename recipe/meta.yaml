@@ -18,6 +18,7 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
+  skip: true  # [py==313]
 
 outputs:
   - name: mmcv
