@@ -23,7 +23,7 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export FORCE_CUDA="1"
     # https://github.com/conda-forge/conda-forge.github.io/issues/1901
     if [[ ${cuda_compiler_version} == 12.* ]]; then
-      TORCH_CUDA_ARCH_LIST="5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
+      export TORCH_CUDA_ARCH_LIST="5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
       # $CUDA_HOME not set in CUDA 12.0. Using $PREFIX
       export CUDA_TOOLKIT_ROOT_DIR="${PREFIX}"
     else
