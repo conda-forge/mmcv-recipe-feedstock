@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ex
 
+# TODO remove when migrating to PyTorch 2.9
+if [ "$CROSS_COMPILING" == "true" ]; then
+  echo "Detected cross-compilation - deleting env-based pytorch header files to prevent duplicate definition errors"
+  rm -rf "$CONDA_PREFIX"/lib/python3.*/site-packages/torch/include/
+fi
+
 export PATH="$PWD:$PATH"
 
 export CC=$(basename $CC)
@@ -23,7 +29,7 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export FORCE_CUDA="1"
     # https://github.com/conda-forge/conda-forge.github.io/issues/1901
     if [[ ${cuda_compiler_version} == 12.* ]]; then
-      TORCH_CUDA_ARCH_LIST="5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
+      export TORCH_CUDA_ARCH_LIST="5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
       # $CUDA_HOME not set in CUDA 12.0. Using $PREFIX
       export CUDA_TOOLKIT_ROOT_DIR="${PREFIX}"
     else
