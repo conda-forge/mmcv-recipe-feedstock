@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ex
 
+# TODO remove when migrating to PyTorch 2.9
+if [ "$CROSS_COMPILING" == "true" ]; then
+  echo "Detected cross-compilation - deleting env-based pytorch header files to prevent duplicate definition errors"
+  rm -rf "$CONDA_PREFIX"/lib/python3.*/site-packages/torch/include/
+fi
+
 export PATH="$PWD:$PATH"
 
 export CC=$(basename $CC)

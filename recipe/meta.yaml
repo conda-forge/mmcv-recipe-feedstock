@@ -25,6 +25,9 @@ outputs:
     build:
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
+      script_env:
+        - CROSS_COMPILING=true  # [build_platform != target_platform]
+        - CROSS_COMPILING=false # [build_platform == target_platform]
     script: build_mmcv.sh  # [not win]
     requirements:
       build:
