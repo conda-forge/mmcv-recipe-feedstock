@@ -25,6 +25,8 @@ LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
 export MAX_JOBS=${CPU_COUNT}
 export MMCV_WITH_OPS=1
 
+# Set the CUDA arch list from
+# https://github.com/conda-forge/pytorch-cpu-feedstock/blob/238fe50d9f9a3957584d3713531a81eec91e9f0e/recipe/build.sh#L217-L240
 if [[ ${cuda_compiler_version} != "None" ]]; then
     export FORCE_CUDA="1"
     # https://github.com/conda-forge/conda-forge.github.io/issues/1901
@@ -32,6 +34,8 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
       export TORCH_CUDA_ARCH_LIST="5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
       # $CUDA_HOME not set in CUDA 12.0. Using $PREFIX
       export CUDA_TOOLKIT_ROOT_DIR="${PREFIX}"
+    elif [[ ${cuda_compiler_version} == 13.* ]]; then
+        export TORCH_CUDA_ARCH_LIST="7.5;8.0;8.6;8.9;9.0;10.0;12.0+PTX"
     else
         echo "unsupported cuda version. edit build_mmcv.sh"
         exit 1
