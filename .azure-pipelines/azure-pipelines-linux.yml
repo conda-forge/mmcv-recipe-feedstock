@@ -8,36 +8,36 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.6cxx_compiler_version13python3.11.____cpython:
-        CONFIG: linux_64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.6cxx_compiler_version13python3.11.____cpython
+      linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.10.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version13c_stdlib_ve_h1c8549ce
-      linux_64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.6cxx_compiler_version13python3.12.____cpython:
-        CONFIG: linux_64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.6cxx_compiler_version13python3.12.____cpython
+        SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h4300bc21
+      linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.11.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version13c_stdlib_ve_h33bca784
-      linux_64_c_compiler_version14c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython:
-        CONFIG: linux_64_c_compiler_version14c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython
+        SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h3747ab2d
+      linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.10.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.10.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version14c_stdlib_ve_h67d13937
-      linux_64_c_compiler_version14c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython:
-        CONFIG: linux_64_c_compiler_version14c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython
+        SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_hbcd90413
+      linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.11.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.11.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version14c_stdlib_ve_h847acbd8
-      linux_64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14python3.11.____cpython:
-        CONFIG: linux_64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14python3.11.____cpython
+        SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h25b83c4e
+      linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.10.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version14c_stdlib_ve_h0650ab44
-      linux_64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14python3.12.____cpython:
-        CONFIG: linux_64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14python3.12.____cpython
+        SHORT_CONFIG: linux_64_c_stdlib_version2.28cuda_compil_h7bc1faf3
+      linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.11.____cpython:
+        CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_c_compiler_version14c_stdlib_ve_h71234fd6
+        SHORT_CONFIG: linux_64_c_stdlib_version2.28cuda_compil_h9cd8e738
   timeoutInMinutes: 360
   variables: {}
 
