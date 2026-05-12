@@ -22,44 +22,23 @@ jobs:
       max-parallel: 50
       matrix:
         include:
-          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.10.____cpython
+          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.12.____cpython
             STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h4300bc21
+            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h86c3c167
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9python3.11.____cpython
+          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.12.____cpython
             STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h3747ab2d
+            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_hd2612ca0
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.10.____cpython
+          - CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.12.____cpython
             STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_hbcd90413
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonepython3.11.____cpython
-            STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.17cuda_compil_h25b83c4e
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.10.____cpython
-            STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.28cuda_compil_h7bc1faf3
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0python3.11.____cpython
-            STORE_BUILD_ARTIFACTS: True
-            SHORT_CONFIG: linux_64_c_stdlib_version2.28cuda_compil_h9cd8e738
+            SHORT_CONFIG: linux_64_c_stdlib_version2.28cuda_compil_h8d03b736
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
