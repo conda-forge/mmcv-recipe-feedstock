@@ -22,8 +22,7 @@ source:
     - avoid-pkg-resources.patch
 build:
   number: {{ build }}
-  skip: true  # [win]
-  skip: true  # [py==313]
+  skip: true  # [win or py==313]
 
 outputs:
   - name: mmcv
