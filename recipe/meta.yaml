@@ -1,5 +1,5 @@
 {% set version = "2.2.0" %}
-{% set build = 10 %}
+{% set build = 11 %}
 
 # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -15,6 +15,10 @@ package:
 source:
   url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 13b2bdab6e97799177dee568efdb2ae0bb48b1dc924a8b617416ee8a392e5348
+  patches:
+    # conda-forge/mmengine installs the lighter upstream Python distribution.
+    # Keep conda runtime deps on "mmengine", but make Python metadata pip-checkable.
+    - use-mmengine-lite-metadata.patch
 build:
   number: {{ build }}
   skip: true  # [win]
@@ -91,7 +95,7 @@ outputs:
         - .dev_scripts/check_installation.py
         - tests
       commands:
-        # - pip check  # disabled because mmengine on conda-forge is mmengine-lite
+        - pip check
         - python ./.dev_scripts/check_installation.py
         # unknown osx_64 segfault on test_pixel_group
         {% set tests_to_skip = "test_pixel_group" %}

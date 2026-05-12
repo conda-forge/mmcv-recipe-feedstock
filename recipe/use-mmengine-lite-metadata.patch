@@ -1,0 +1,11 @@
+diff --git a/requirements/runtime.txt b/requirements/runtime.txt
+index 0347634..c3b3a70 100644
+--- a/requirements/runtime.txt
++++ b/requirements/runtime.txt
+@@ -1,5 +1,5 @@
+ addict
+-mmengine>=0.3.0
++mmengine-lite>=0.3.0
+ numpy
+ packaging
+ Pillow
