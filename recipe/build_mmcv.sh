@@ -44,4 +44,4 @@ fi
 
 export CMAKE_BUILD_TYPE=Release
 # we skip deps so opencv-python from pip is not pulled in
-$PYTHON -m pip install . -vvv --no-deps
+$PYTHON -m pip install . -vvv --no-deps --no-build-isolation

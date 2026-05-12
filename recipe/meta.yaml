@@ -19,6 +19,7 @@ source:
     # conda-forge/mmengine installs the lighter upstream Python distribution.
     # Keep conda runtime deps on "mmengine", but make Python metadata pip-checkable.
     - use-mmengine-lite-metadata.patch
+    - avoid-pkg-resources.patch
 build:
   number: {{ build }}
   skip: true  # [win]
@@ -54,11 +55,13 @@ outputs:
         {% endif %}
       host:
         - numpy
+        - packaging
         - pip
         - python
         - pytorch
         - pytorch * {{ torch_proc_type }}*
         - setuptools
+        - wheel
         {% if cuda_compiler_version != "None" %}
         # Ensure cuda version matches build https://github.com/conda-forge/mmcv-recipe-feedstock/issues/40
         - cuda-version {{ cuda_compiler_version }}
