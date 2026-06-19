@@ -1,0 +1,121 @@
+schema_version: 1
+
+context:
+  name: mmcv
+  version: 2.2.0
+  # see https://github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
+  torch_proc_type: ${{ 'cuda' if cuda_compiler_version != 'None' else 'cpu' }}
+  build_str_prefix: ${{ "cuda" ~ (cuda_compiler_version | version_to_buildstring) if cuda_compiler_version != "None" else "cpu_" }}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/open-mmlab/mmcv/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 13b2bdab6e97799177dee568efdb2ae0bb48b1dc924a8b617416ee8a392e5348
+  patches:
+    # conda-forge/mmengine installs the lighter upstream Python distribution.
+    # Keep conda runtime deps on "mmengine", but make Python metadata pip-checkable.
+    - use-mmengine-lite-metadata.patch
+    - avoid-pkg-resources.patch
+
+build:
+  number: 12
+  string: ${{ build_str_prefix ~ "py" ~ (python | version_to_buildstring) ~ "h" ~ hash ~ "_" ~ build_number }}
+  script:
+    file: build_mmcv.sh
+  skip:
+    - win
+    - match(python, ">=3.13")
+
+requirements:
+  build:
+    - ninja
+    - psutil
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    # this adds matching cuda requirement to run deps using __cuda package
+    - if: cuda_compiler_version != "None"
+      then: ${{ compiler('cuda') }}
+  host:
+    - numpy
+    - packaging
+    - pip
+    - python
+    - pytorch
+    - pytorch * ${{ torch_proc_type }}*
+    - setuptools
+    - wheel
+    - if: cuda_compiler_version != "None"
+      then:
+        # Ensure cuda version matches build https://github.com/conda-forge/mmcv-recipe-feedstock/issues/40
+        - cuda-version ${{ cuda_compiler_version }}.*
+        - libcublas-dev
+        - libcusolver-dev
+        - libcusparse-dev
+  run:
+    # intentionally skipping opencv and pytorch (following upstream vendor)
+    # https://github.com/conda-forge/staged-recipes/pull/19400#discussion_r912546152
+    - if: cuda_compiler_version != "None"
+      then: cuda-version ${{ cuda_compiler_version }}.*
+    - addict
+    - mmengine >=0.3.0
+    - packaging
+    - Pillow
+    - python
+    - pyyaml
+    - typing_extensions
+    - yapf
+  run_constraints:
+    # additional run constraint to the one from the (version-only) run_export;
+    # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner
+    - pytorch * ${{ torch_proc_type }}*
+
+tests:
+  # - python:
+  #     imports:
+  #       - mmcv
+  #     pip_check: true
+  - files:
+      source:
+        - .dev_scripts/check_installation.py
+        - tests
+    requirements:
+      run:
+        - onnx
+        - pip
+        - pytest
+        - pyturbojpeg
+        - py-opencv
+        - tifffile
+        - torchvision
+    script:
+      # Manual import and pip checks to avoid py-opencv dep
+      - python -c "import mmcv"
+      - pip check
+      - python ./.dev_scripts/check_installation.py
+      - if: not osx
+        then: $PYTHON -m pytest --verbose ./tests/
+      - if: osx
+        then:
+          # unknown osx_64 and osx_arm64 segfault on test_pixel_group
+          - $PYTHON -m pytest --verbose -rxXs -k "not test_pixel_group" ./tests/
+      - python -c "import mmcv; print(mmcv.__version__)"
+
+about:
+  homepage: https://github.com/open-mmlab/mmcv
+  summary: OpenMMLab Computer Vision Foundation
+  license: Apache-2.0 AND LicenseRef-NVIDIA-License
+  license_file:
+    - LICENSE
+    - LICENSES.md
+  documentation: https://mmcv.readthedocs.io
+  repository: https://github.com/open-mmlab/mmcv
+
+extra:
+  recipe-maintainers:
+    - apatsekin
+    - das-intensity
+    - weiji14
