@@ -96,14 +96,12 @@ tests:
       - python -c "import mmcv"
       - pip check
       - python ./.dev_scripts/check_installation.py
-      - 'tests_to_skip = "_not_a_real_test"'
       - if: not (osx and x86_64)
         then: $PYTHON -m pytest --verbose ./tests/
       - if: osx and x86_64
         then:
           # unknown osx_64 segfault on test_pixel_group
-          - 'tests_to_skip += " or test_pixel_group"'
-          - $PYTHON -m pytest --verbose -rxXs -k "not (${{ tests_to_skip }})" ./tests/
+          - $PYTHON -m pytest --verbose -rxXs -k "not test_pixel_group" ./tests/
       - python -c "import mmcv; print(mmcv.__version__)"
 
 about:
