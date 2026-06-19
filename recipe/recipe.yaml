@@ -57,12 +57,14 @@ requirements:
         - libcusparse-dev
   run:
     # intentionally skipping opencv and pytorch (following upstream vendor)
+    # https://github.com/conda-forge/staged-recipes/pull/19400#discussion_r912546152
     - if: cuda_compiler_version != "None"
       then: cuda-version ${{ cuda_compiler_version }}.*
     - addict
     - mmengine >=0.3.0
     - packaging
     - Pillow
+    - python
     - pyyaml
     - typing_extensions
     - yapf
@@ -72,10 +74,10 @@ requirements:
     - pytorch * ${{ torch_proc_type }}*
 
 tests:
-  - python:
-      imports:
-        - mmcv
-      pip_check: true
+  # - python:
+  #     imports:
+  #       - mmcv
+  #     pip_check: true
   - files:
       source:
         - .dev_scripts/check_installation.py
@@ -90,6 +92,9 @@ tests:
         - tifffile
         - torchvision
     script:
+      # Manual import and pip checks to avoid py-opencv dep
+      - python -c "import mmcv"
+      - pip check
       - python ./.dev_scripts/check_installation.py
       - 'tests_to_skip = "_not_a_real_test"'
       - if: not (osx and x86_64)
