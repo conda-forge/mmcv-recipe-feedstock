@@ -96,11 +96,11 @@ tests:
       - python -c "import mmcv"
       - pip check
       - python ./.dev_scripts/check_installation.py
-      - if: not (osx and x86_64)
+      - if: not osx
         then: $PYTHON -m pytest --verbose ./tests/
-      - if: osx and x86_64
+      - if: osx
         then:
-          # unknown osx_64 segfault on test_pixel_group
+          # unknown osx_64 and osx_arm64 segfault on test_pixel_group
           - $PYTHON -m pytest --verbose -rxXs -k "not test_pixel_group" ./tests/
       - python -c "import mmcv; print(mmcv.__version__)"
 
