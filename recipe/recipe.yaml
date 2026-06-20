@@ -88,18 +88,20 @@ tests:
         - pip
         - pytest
         - pyturbojpeg
-        - py-opencv
+        - py-opencv >=4
         - tifffile
-        - torchvision
+        - torchvision >=0.26
     script:
       # Manual import and pip checks to avoid py-opencv dep
       - python -c "import mmcv"
       - pip check
       - python ./.dev_scripts/check_installation.py
-      - if: not osx
-        then: $PYTHON -m pytest --verbose ./tests/
-        else:
+      - if: osx
+        then:
+          # unknown osx_64 and osx_arm64 segfault on test_pixel_group
           - $PYTHON -m pytest --verbose -rxXs -k "not test_pixel_group" ./tests/
+        else:
+          - $PYTHON -m pytest --verbose ./tests/
       - python -c "import mmcv; print(mmcv.__version__)"
 
 about:
