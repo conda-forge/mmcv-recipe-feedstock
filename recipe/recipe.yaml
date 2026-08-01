@@ -21,7 +21,7 @@ source:
     - avoid-pkg-resources.patch
 
 build:
-  number: 12
+  number: 13
   string: ${{ build_str_prefix ~ "py" ~ (python | version_to_buildstring) ~ "h" ~ hash ~ "_" ~ build_number }}
   script:
     file: build_mmcv.sh
@@ -98,9 +98,7 @@ tests:
       - python ./.dev_scripts/check_installation.py
       - if: not osx
         then: $PYTHON -m pytest --verbose ./tests/
-      - if: osx
-        then:
-          # unknown osx_64 and osx_arm64 segfault on test_pixel_group
+        else:
           - $PYTHON -m pytest --verbose -rxXs -k "not test_pixel_group" ./tests/
       - python -c "import mmcv; print(mmcv.__version__)"
 
