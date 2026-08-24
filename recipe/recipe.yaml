@@ -21,7 +21,7 @@ source:
     - avoid-pkg-resources.patch
 
 build:
-  number: 13
+  number: 14
   string: ${{ build_str_prefix ~ "py" ~ (python | version_to_buildstring) ~ "h" ~ hash ~ "_" ~ build_number }}
   script:
     file: build_mmcv.sh
