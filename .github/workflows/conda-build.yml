@@ -74,6 +74,19 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
+          - CONFIG: linux_64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.14.____cp314
+            CONFIG_SHORT: linux_64_c_compiler_version14c_stdlib_ve_h6f2692c8
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: quick
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version15python3.10.____cpython
             CONFIG_SHORT: linux_64_c_compiler_version15c_stdlib_ve_h45d8af9f
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
@@ -126,6 +139,19 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
+          - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version15python3.14.____cp314
+            CONFIG_SHORT: linux_64_c_compiler_version15c_stdlib_ve_h37294716
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: quick
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.10.____cpython
             CONFIG_SHORT: linux_64_c_compiler_version15c_stdlib_ve_h8222d140
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
@@ -167,6 +193,19 @@ jobs:
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.13.____cp313
             CONFIG_SHORT: linux_64_c_compiler_version15c_stdlib_ve_h689c7a20
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: quick
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
+          - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.14.____cp314
+            CONFIG_SHORT: linux_64_c_compiler_version15c_stdlib_ve_h42ca11de
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
