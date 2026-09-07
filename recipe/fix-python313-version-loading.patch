@@ -1,0 +1,17 @@
+diff --git a/setup.py b/setup.py
+index fe79684..9511946 100644
+--- a/setup.py
++++ b/setup.py
+@@ -37,9 +37,10 @@ def choose_requirement(primary, secondary):
+ 
+ def get_version():
+     version_file = 'mmcv/version.py'
++    version_locals = {}
+     with open(version_file, encoding='utf-8') as f:
+-        exec(compile(f.read(), version_file, 'exec'))
+-    return locals()['__version__']
++        exec(compile(f.read(), version_file, 'exec'), version_locals)
++    return version_locals['__version__']
+ 
+ 
+ def parse_requirements(fname='requirements/runtime.txt', with_version=True):

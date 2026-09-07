@@ -19,15 +19,17 @@ source:
     # Keep conda runtime deps on "mmengine", but make Python metadata pip-checkable.
     - use-mmengine-lite-metadata.patch
     - avoid-pkg-resources.patch
+    # Python 3.13 no longer mutates optimized function locals through exec().
+    # https://github.com/open-mmlab/mmengine/issues/1616#issuecomment-2559072367
+    - fix-python313-version-loading.patch
 
 build:
-  number: 14
+  number: 15
   string: ${{ build_str_prefix ~ "py" ~ (python | version_to_buildstring) ~ "h" ~ hash ~ "_" ~ build_number }}
   script:
     file: build_mmcv.sh
   skip:
     - win
-    - match(python, ">=3.13")
 
 requirements:
   build:
