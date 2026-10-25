@@ -24,7 +24,7 @@ source:
     - fix-python313-version-loading.patch
 
 build:
-  number: 15
+  number: 16
   string: ${{ build_str_prefix ~ "py" ~ (python | version_to_buildstring) ~ "h" ~ hash ~ "_" ~ build_number }}
   script:
     file: build_mmcv.sh
