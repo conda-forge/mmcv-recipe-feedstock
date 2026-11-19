@@ -19,6 +19,9 @@ LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
 export MAX_JOBS=${CPU_COUNT}
 export MMCV_WITH_OPS=1
 
+# PyTorch 2.14 requires C++20
+sed -i.bak "s@'-std=c++17'@'-std=c++20'@g" setup.py
+
 # Set the CUDA arch list from
 # https://github.com/conda-forge/pytorch-cpu-feedstock/blob/238fe50d9f9a3957584d3713531a81eec91e9f0e/recipe/build.sh#L217-L240
 if [[ ${cuda_compiler_version} != "None" ]]; then
